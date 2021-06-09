@@ -52,6 +52,9 @@ class owoifyCommand extends PluginCommand
                 $this->owoify->getSettings()->save();
                 $sender->sendMessage(TextFormat::GREEN . "Owoify has been turned off! ddy ;c");
                 break;
+            default:
+                $sender->sendMessage(TextFormat::RED . "Invalid argument. Use /owoify help for a list of valid arguments.");
+                break;    
         }
     }
 }
