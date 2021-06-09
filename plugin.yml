@@ -1,0 +1,5 @@
+name: owoify
+main: seeker\owoify
+author: seeker
+version: 1.0.0
+api: [3.19.2]
