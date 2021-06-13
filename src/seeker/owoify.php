@@ -13,8 +13,11 @@ class owoify extends PluginBase
     /** @var Config */
     private $settings;
 
+    private static $instance;
+    
     public function onEnable(): void
     {
+        self::$instance = $this;
         $this->saveResource("config.yml");
         $this->settings = new Config($this->getDataFolder() . "config.yml", Config::YAML);
         if($this->getSettings()->get("more-emojis") == true) $this->getSettings()->set("emojis", false);
@@ -23,11 +26,14 @@ class owoify extends PluginBase
         $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
     }
 
+    public static function getInstance() : self
+    {
+        return self::$instance;
+    }
+    
     /*
      * For use with other plugins, you can use
-     * $owoify = Server::getInstance()->getPlugin('owoify');
-     * $string = $owoify->owoify('string');
-     * Make sure you have it downloaded though!
+     * owoify::getInstance()->owoify('string');
      */
     /**
      * @param string $message
